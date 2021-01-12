@@ -86,12 +86,12 @@ class _HomeState extends State<Home> {
   void _showProductPage({Product product}) async {
     //final recProduct = await Navigator.push(context, MaterialPageRoute(builder: (context) => UserPage(user: user)));
 
-    if (recProduct != null){
-      if (product != null){
+    //if (recProduct != null){
+      //if (product != null){
         //method call to update product
-      } else {
+      //} else {
         // insert product
-      }
+      //}
       //method call load users
       //loadUsers();
     }
