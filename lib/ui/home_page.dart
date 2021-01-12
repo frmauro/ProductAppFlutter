@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:async/async.dart';
 
-const urlApi = "http://192.168.15.32:8088/";
+const urlApi = "http://localhost:8087/product/";
 
 class Home extends StatefulWidget {
   @override
