@@ -40,9 +40,65 @@ class _HomeState extends State<Home> {
         padding: EdgeInsets.all(10.0),
         itemCount: _products.length,
         itemBuilder: (context, index) {
-          return null;
+          return _productCard(context, index);
         },
       ),
     );
   }
+
+  Widget _productCard(BuildContext context, int index){
+    return GestureDetector(
+      child: Card(
+        child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Row(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(left: 10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(_products[index].description ?? "",
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    Text(_products[index].price ?? "",
+                      style: TextStyle(
+                          fontSize: 12.0
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+      onTap: () {
+        _showProductPage(product: _products[index]);
+      },
+    );
+  }
+
+
+  void _showProductPage({Product product}) async {
+    //final recProduct = await Navigator.push(context, MaterialPageRoute(builder: (context) => UserPage(user: user)));
+
+    if (recProduct != null){
+      if (product != null){
+        //method call to update product
+      } else {
+        // insert product
+      }
+      //method call load users
+      //loadUsers();
+    }
+  }
+
+
+
+
+
 }
