@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -5,7 +7,7 @@ import 'package:async/async.dart';
 
 import 'package:product_app/model/product.dart';
 
-const urlApi = "http://localhost:8087/product/";
+const urlApi = "http://192.168.15.32:8087/product/";
 
 class Home extends StatefulWidget {
   @override
@@ -21,6 +23,38 @@ class _HomeState extends State<Home> {
     'Content-type': 'application/json',
     'Accept': 'application/json',
   };
+
+  Future<String> getAllProducts() async {
+    http.Response res = await http.get(urlApi, headers: _setHeaders());
+    if (res.statusCode == 200) {
+      print(res.body);
+      return res.body;
+    }
+    return "erro";
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadProducts();
+  }
+
+  void loadProducts(){
+    this.getAllProducts()
+        .then((body) {
+              var jsonProducts = json.decode(body) as List;
+              List<dynamic> list;
+              _products.clear();
+
+              jsonProducts.forEach((e) {
+                _products.add(Product.fromJson(e));
+              });
+
+              setState(() {
+                _products = _products;
+              });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,4 +135,4 @@ class _HomeState extends State<Home> {
 
 
 
-}
+
