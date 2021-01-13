@@ -7,7 +7,7 @@ import 'package:async/async.dart';
 
 import 'package:product_app/model/product.dart';
 
-const urlApi = "http://192.168.15.32:8087/product/";
+const urlApi = "http://192.168.15.32:8087/product";
 
 class Home extends StatefulWidget {
   @override
