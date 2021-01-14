@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:async/async.dart';
 
 import 'package:product_app/model/product.dart';
+import 'package:product_app/ui/product_page.dart';
 
 const urlApi = "http://192.168.15.32:8087/product";
 
@@ -27,7 +28,7 @@ class _HomeState extends State<Home> {
   Future<String> getAllProducts() async {
     http.Response res = await http.get(urlApi, headers: _setHeaders());
     if (res.statusCode == 200) {
-      print(res.body);
+      //print(res.body);
       return res.body;
     }
     return "erro";
@@ -49,7 +50,8 @@ class _HomeState extends State<Home> {
               jsonProducts.forEach((e) {
                 _products.add(Product.fromJson(e));
               });
-
+                //print("TESTE 0001");
+                //print(_products);
               setState(() {
                 _products = _products;
               });
@@ -118,16 +120,16 @@ class _HomeState extends State<Home> {
 
 
   void _showProductPage({Product product}) async {
-    //final recProduct = await Navigator.push(context, MaterialPageRoute(builder: (context) => UserPage(user: user)));
+    final recProduct = await Navigator.push(context, MaterialPageRoute(builder: (context) => ProductPage(product: product)));
 
-    //if (recProduct != null){
-      //if (product != null){
+    if (recProduct != null){
+      if (product != null){
         //method call to update product
-      //} else {
+      } else {
         // insert product
-      //}
+      }
       //method call load users
-      //loadUsers();
+      loadProducts();
     }
   }
 
