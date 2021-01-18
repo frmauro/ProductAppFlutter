@@ -32,6 +32,33 @@ class _ProductPageState extends State<ProductPage> {
   Product _editedProduct;
 
 
+  Future<String> saveProduct(Product product) async {
+    final http.Response response = await http.post(
+      urlApi,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'amount': product.amount,
+        'description': product.description,
+        'price': product.price,
+        'status': "Active"
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      print(response.body);
+      return "operation success";
+    } else {
+      // If the server did not return a 201 CREATED response,
+      // then throw an exception.
+      throw Exception('Failed to load product');
+    }
+  }
+
+
   @override
   void initState() {
     super.initState();

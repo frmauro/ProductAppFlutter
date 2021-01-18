@@ -20,10 +20,11 @@ class _HomeState extends State<Home> {
   final _productController = TextEditingController();
   List<Product> _products = [];
 
-  _setHeaders() => {
-    'Content-type': 'application/json',
-    'Accept': 'application/json',
-  };
+  _setHeaders() =>
+      {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+      };
 
   Future<String> getAllProducts() async {
     http.Response res = await http.get(urlApi, headers: _setHeaders());
@@ -40,21 +41,21 @@ class _HomeState extends State<Home> {
     loadProducts();
   }
 
-  void loadProducts(){
+  void loadProducts() {
     this.getAllProducts()
         .then((body) {
-              var jsonProducts = json.decode(body) as List;
-              List<dynamic> list;
-              _products.clear();
+      var jsonProducts = json.decode(body) as List;
+      List<dynamic> list;
+      _products.clear();
 
-              jsonProducts.forEach((e) {
-                _products.add(Product.fromJson(e));
-              });
-                //print("TESTE 0001");
-                //print(_products);
-              setState(() {
-                _products = _products;
-              });
+      jsonProducts.forEach((e) {
+        _products.add(Product.fromJson(e));
+      });
+      //print("TESTE 0001");
+      //print(_products);
+      setState(() {
+        _products = _products;
+      });
     });
   }
 
@@ -68,7 +69,9 @@ class _HomeState extends State<Home> {
       ),
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          _showProductPage();
+        },
         child: Icon(Icons.add),
         backgroundColor: Colors.red,
       ),
@@ -82,7 +85,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _productCard(BuildContext context, int index){
+  Widget _productCard(BuildContext context, int index) {
     return GestureDetector(
       child: Card(
         child: Padding(
@@ -120,10 +123,11 @@ class _HomeState extends State<Home> {
 
 
   void _showProductPage({Product product}) async {
-    final recProduct = await Navigator.push(context, MaterialPageRoute(builder: (context) => ProductPage(product: product)));
+    final recProduct = await Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ProductPage(product: product)));
 
-    if (recProduct != null){
-      if (product != null){
+    if (recProduct != null) {
+      if (product != null) {
         //method call to update product
       } else {
         // insert product
@@ -132,6 +136,8 @@ class _HomeState extends State<Home> {
       loadProducts();
     }
   }
+
+}
 
 
 
