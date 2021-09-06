@@ -5,9 +5,8 @@ import 'package:http/http.dart' as http;
 
 import 'package:product_app/model/product.dart';
 
-const urlApi = "http://192.168.15.32:8087/product";
-
-
+//const urlApi = "http://192.168.15.32:8087/product";
+const urlApi = "http://192.168.49.2:31003/product";
 
 class ProductPage extends StatefulWidget {
   final Product product;
@@ -19,7 +18,6 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-
   final _descriptionController = TextEditingController();
   final _amountController = TextEditingController();
   final _priceController = TextEditingController();
@@ -30,7 +28,6 @@ class _ProductPageState extends State<ProductPage> {
 
   bool _productEdited = false;
   Product _editedProduct;
-
 
   Future<String> saveProduct(Product product) async {
     final http.Response response = await http.post(
@@ -58,10 +55,7 @@ class _ProductPageState extends State<ProductPage> {
     }
   }
 
-
-
   Future<String> updateProduct(Product product) async {
-
     //int amount = int.parse(product.amount);//STRING to INT
 
     final http.Response response = await http.put(
@@ -91,10 +85,7 @@ class _ProductPageState extends State<ProductPage> {
       // then throw an exception.
       throw Exception('Failed to load product');
     }
-
-
   }
-
 
   @override
   void initState() {
@@ -110,7 +101,6 @@ class _ProductPageState extends State<ProductPage> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,26 +111,26 @@ class _ProductPageState extends State<ProductPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-
           print("event onPressed");
 
           //print(_editedProduct.description);
           //print(_editedProduct.id);
           //print(_editedProduct.amount);
 
-          if (_editedProduct.description.isEmpty || _editedProduct.description == null){
+          if (_editedProduct.description.isEmpty ||
+              _editedProduct.description == null) {
             FocusScope.of(context).requestFocus(_descriptionFocus);
           }
 
-          if (_editedProduct.amount.isEmpty || _editedProduct.amount == null){
+          if (_editedProduct.amount.isEmpty || _editedProduct.amount == null) {
             FocusScope.of(context).requestFocus(_amountFocus);
           }
 
-          if (_editedProduct.price.isEmpty || _editedProduct.price == null){
+          if (_editedProduct.price.isEmpty || _editedProduct.price == null) {
             FocusScope.of(context).requestFocus(_priceFocus);
           }
 
-          if (_editedProduct.id == null){
+          if (_editedProduct.id == null) {
             print("INSERT");
             saveProduct(_editedProduct).then((result) {
               print("---- Result ----");
@@ -154,10 +144,7 @@ class _ProductPageState extends State<ProductPage> {
               print(result);
               Navigator.pop(context, _editedProduct);
             });
-
           }
-
-
         },
         child: Icon(Icons.save),
         backgroundColor: Colors.red,

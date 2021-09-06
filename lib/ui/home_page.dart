@@ -8,7 +8,8 @@ import 'package:async/async.dart';
 import 'package:product_app/model/product.dart';
 import 'package:product_app/ui/product_page.dart';
 
-const urlApi = "http://192.168.15.32:8087/product";
+//const urlApi = "http://192.168.15.32:8087/product";
+const urlApi = "http://192.168.49.2:31003/product";
 
 class Home extends StatefulWidget {
   @override
@@ -16,12 +17,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   final _productController = TextEditingController();
   List<Product> _products = [];
 
-  _setHeaders() =>
-      {
+  _setHeaders() => {
         'Content-type': 'application/json',
         'Accept': 'application/json',
       };
@@ -42,8 +41,7 @@ class _HomeState extends State<Home> {
   }
 
   void loadProducts() {
-    this.getAllProducts()
-        .then((body) {
+    this.getAllProducts().then((body) {
       var jsonProducts = json.decode(body) as List;
       List<dynamic> list;
       _products.clear();
@@ -97,16 +95,14 @@ class _HomeState extends State<Home> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(_products[index].description ?? "",
+                    Text(
+                      _products[index].description ?? "",
                       style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold
-                      ),
+                          fontSize: 16.0, fontWeight: FontWeight.bold),
                     ),
-                    Text(_products[index].price ?? "",
-                      style: TextStyle(
-                          fontSize: 12.0
-                      ),
+                    Text(
+                      _products[index].price ?? "",
+                      style: TextStyle(fontSize: 12.0),
                     )
                   ],
                 ),
@@ -120,7 +116,6 @@ class _HomeState extends State<Home> {
       },
     );
   }
-
 
   void _showProductPage({Product product}) async {
     final recProduct = await Navigator.push(context,
@@ -136,11 +131,4 @@ class _HomeState extends State<Home> {
       loadProducts();
     }
   }
-
 }
-
-
-
-
-
-
