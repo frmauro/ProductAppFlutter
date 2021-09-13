@@ -6,7 +6,11 @@ import 'package:http/http.dart' as http;
 import 'package:product_app/model/product.dart';
 
 //const urlApi = "http://192.168.15.32:8087/product";
-const urlApi = "http://192.168.49.2:31003/product";
+//const urlApi = "http://192.168.49.2:31003/product";
+//const urlApi = "http://192.168.49.1:31003/product";
+//const urlApi = "http://192.168.49.1:6000/product";
+// Esse é o IP do wifi
+const urlApi = "http://192.168.15.61:80";
 
 class ProductPage extends StatefulWidget {
   final Product product;
