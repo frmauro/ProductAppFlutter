@@ -11,6 +11,7 @@ import 'package:product_app/model/product.dart';
 //const urlApi = "http://192.168.49.1:6000/product";
 // Esse é o IP do wifi
 const urlApi = "http://192.168.15.61:80/product";
+//const urlApi = "http://salesorder.com/product";
 
 class ProductPage extends StatefulWidget {
   final Product product;
