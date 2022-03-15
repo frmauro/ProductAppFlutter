@@ -12,7 +12,7 @@ import 'package:product_app/ui/product_page.dart';
 //const urlApi = "http://192.168.49.2:31003/product";
 //const urlApi = "http://192.168.49.1:31003/product";
 // Esse é o IP do wifi
-const urlApi = "http://192.168.15.61:80/product";
+const urlApiWifiIP = "http://192.168.15.61:80/getAllProduct";
 //const urlApi = "http://salesorder.com/product";
 
 class Home extends StatefulWidget {
@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
       };
 
   Future<String> getAllProducts() async {
-    http.Response res = await http.get(urlApi, headers: _setHeaders());
+    http.Response res = await http.get(urlApiWifiIP, headers: _setHeaders());
     if (res.statusCode == 200) {
       //print(res.body);
       return res.body;
@@ -51,7 +51,8 @@ class _HomeState extends State<Home> {
       _products.clear();
 
       jsonProducts.forEach((e) {
-        _products.add(Product.fromJson(e));
+        var currentProduct = Product.fromJson(e);
+        _products.add(currentProduct);
       });
       //print("TESTE 0001");
       //print(_products);
