@@ -10,7 +10,8 @@ import 'package:product_app/model/product.dart';
 //const urlApi = "http://192.168.49.1:31003/product";
 //const urlApi = "http://192.168.49.1:6000/product";
 // Esse é o IP do wifi
-const urlApi = "http://192.168.15.61:80/product";
+const urlApiCreate = "http://192.168.15.61:80/CreateProduct";
+const urlApiUpdate = "http://192.168.15.61:80/UpdateProduct";
 //const urlApi = "http://salesorder.com/product";
 
 class ProductPage extends StatefulWidget {
@@ -36,7 +37,7 @@ class _ProductPageState extends State<ProductPage> {
 
   Future<String> saveProduct(Product product) async {
     final http.Response response = await http.post(
-      urlApi,
+      urlApiCreate,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -48,7 +49,7 @@ class _ProductPageState extends State<ProductPage> {
       }),
     );
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
       print(response.body);
@@ -64,7 +65,7 @@ class _ProductPageState extends State<ProductPage> {
     //int amount = int.parse(product.amount);//STRING to INT
 
     final http.Response response = await http.put(
-      urlApi,
+      urlApiUpdate,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -80,7 +81,7 @@ class _ProductPageState extends State<ProductPage> {
     //print("**************** STATUS CODE *************************");
     //print(response.statusCode);
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
       print(response.body);
